@@ -10,16 +10,14 @@ import { useInView } from 'react-intersection-observer'
 function HomePage() {
   
   const [page, setPage] = useState(1);
-  const {data, isLoading, error, isFetching} = useGetTopAnimeQuery({limit: 20, page: page})
+  const {data, isLoading, error} = useGetTopAnimeQuery({limit: 20, page: page})
   const{inView, ref} = useInView()
-  const [anime, setAnime] = useState([]);
   console.log(data)
 
   const animeData = data?.data;
 
   useEffect(() => {
     if (inView && !isLoading) {
-      console.log("Fetching more data...");
       setPage((prevPage) => prevPage + 1);
     }
 
@@ -36,7 +34,7 @@ function HomePage() {
 
           <div className='flex flex-wrap justify-around mt-10 gap-y-3'>
 
-            {animeData.map((anime:any) => (
+            {animeData.map((anime, index ) => (
               
               <AnimeCard key={anime.mal_id} anime = {anime}/>
 

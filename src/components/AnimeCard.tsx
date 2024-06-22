@@ -4,8 +4,8 @@ import { useActions } from "../hooks/useActions";
 import { useTypedSelection } from "../hooks/useTypedSelection";
 import { Link } from "react-router-dom";
 
-export const AnimeCard = (anime:any) => {
-  const animeInfo:IAnimeInfo = anime.anime
+export const AnimeCard = ({ anime, index }) => {
+  console.log(anime)
 
   const [hover, setHover] = useState(false);
   const onHover = () => {
@@ -19,26 +19,26 @@ export const AnimeCard = (anime:any) => {
 
   const {watchlist} = useTypedSelection(state => state)
 
-  const isInWatchlist = watchlist.some(p => p.mal_id === animeInfo.mal_id)
+  const isInWatchlist = watchlist.some(p => p.mal_id === anime.mal_id)
 
-  function AddToWatchlist(event){
+  function AddToWatchlist(event:any){
     event.preventDefault();
     event.stopPropagation();
     
-    !isInWatchlist && addItem(animeInfo)
+    !isInWatchlist && addItem(anime)
   }
   
 
   return (
     <div className="rounded-xl border-black text-center  h-[26rem] flex flex-col w-56 cursor-pointer">
-          <Link to={`anime/${animeInfo.mal_id}`} className="text-white">
+          <Link to={`anime/${anime.mal_id}`} className="text-white">
         <div className="rounded-xl h-80 p-0 relative" onMouseEnter={onHover} onMouseLeave={onLeave}>
-          <img src={animeInfo.images.jpg.image_url} className={` ${hover ? 'blur-sm opacity-40' : 'blur-none'} rounded-xl h-full absolute`}/>
+          <img src={anime.images.jpg.image_url} className={` ${hover ? 'blur-sm opacity-40' : 'blur-none'} rounded-xl h-full absolute`}/>
           
           <div className={` ${hover ? 'opacity-100' : ' opacity-0'} absolute w-full h-full  transition-all rounded-xl z-50`}>
 
             <div className="p-2 text-md text-white">
-              {animeInfo.synopsis.slice(0, 200) + '...'}
+              {anime.synopsis.slice(0, 200) + '...'}
             </div>
 
           
@@ -59,8 +59,8 @@ export const AnimeCard = (anime:any) => {
         </div>
         </Link>
         
-        <div className={` ${hover ? 'blur-sm opacity-40' : 'blur-none'} absolute p-1 bg-green-500 rounded-tl-xl text-lg`}><span >{animeInfo.score}</span></div>
-        <span className="text-xl p-3">{animeInfo.title}</span>
+        <div className={` ${hover ? 'blur-sm opacity-40' : 'blur-none'} absolute p-1 bg-green-500 rounded-tl-xl text-lg`}><span >{anime.score}</span></div>
+        <span className="text-xl p-3">{anime.title}</span>
         
     </div>
   )
