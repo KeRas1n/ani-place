@@ -15,9 +15,7 @@ export const AnimeCard = ({ anime, index }) => {
   };
 
   const {addItem} = useActions();
-
   const {watchlist} = useTypedSelection(state => state)
-  //console.log(watchlist)
   const isInWatchlist = watchlist.items.some(p => p.mal_id === anime.mal_id)
 
   function AddToWatchlist(event:any){
@@ -32,9 +30,12 @@ export const AnimeCard = ({ anime, index }) => {
     <div className="rounded-xl border-black text-center  h-[26rem] flex flex-col w-56 cursor-pointer">
           <Link to={`anime/${anime.mal_id}`} className="text-white">
         <div className="rounded-xl h-80 p-0 relative" onMouseEnter={onHover} onMouseLeave={onLeave}>
-          <img src={anime.images.jpg.image_url} className={` ${hover ? 'blur-sm opacity-40' : 'blur-none'} rounded-xl h-full absolute`}/>
-          
-          <div className={` ${hover ? 'opacity-100' : ' opacity-0'} absolute w-full h-full  transition-all rounded-xl z-50`}>
+
+          <div className="relative overflow-hidden inline-block rounded-xl  h-full w-full">
+              <img src={anime.images.jpg.image_url} className={` ${hover ? 'scale-125 transition-[8000ms] blur-sm opacity-40' : 'blur-none'} rounded-xl h-full block`}/>
+          </div>
+
+          <div className={` ${hover ? 'opacity-100' : ' opacity-0'} absolute w-full h-full top-0 transition-all rounded-xl z-50`}>
 
             <div className="p-2 text-md text-white">
               {anime.synopsis.slice(0, 200) + '...'}
