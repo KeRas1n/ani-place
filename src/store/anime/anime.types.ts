@@ -1,3 +1,5 @@
+import { listTags } from "../watchlist/watchlist.slice";
+
 export interface IAnime{
   mal_id: number;
 
@@ -118,4 +120,6 @@ export interface IAnimeInfo{
   mal_id:number;
   title:string;
   score:number;
+  listTag:listTags;
+  images:any
 }

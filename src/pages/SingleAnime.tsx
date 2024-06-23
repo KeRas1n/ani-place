@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { useGetSingleAnimeQuery } from "../store/anime/singleanime.api";
 import { IoStar } from "react-icons/io5";
 import { FaUsers } from "react-icons/fa6";
@@ -9,14 +9,14 @@ export const SingleAnime = () => {
   const {id} = useParams();
 
   const {data, isLoading, error} = useGetSingleAnimeQuery(id)
+  
   const animeInfo = data?.data;
 
-  console.log(data)
+  console.log(animeInfo)
     
   const {addItem} = useActions();
   const {watchlist} = useTypedSelection(state => state)
-  const isInWatchlist = watchlist.items.some(p => p.mal_id === animeInfo.mal_id)
-
+  const isInWatchlist = watchlist?.items?.some((p:IAnime) => p.mal_id === animeInfo?.mal_id) 
 
   return (
     <div className="p-[2rem] wrapper mt-3">
@@ -28,7 +28,7 @@ export const SingleAnime = () => {
       <div className="grid anime-grid gap-3 w-full">
       <div className="flex flex-col justify-center">
           <img src={animeInfo.images.jpg.image_url} className="rounded-lg" width='500px'/>
-          <button onClick={() => !isInWatchlist && addItem(animeInfo)} className="mt-5 p-2 hover:bg-primary">{isInWatchlist? 
+          <button onClick={() =>  !isInWatchlist && addItem(animeInfo)} className="mt-5 p-2 hover:bg-primary">{isInWatchlist? 
           'Added To Watchlist' 
           :
           'Add to Watchlist'

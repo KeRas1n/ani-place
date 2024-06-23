@@ -1,11 +1,8 @@
-import { useState } from "react";
-import { IAnimeInfo } from "../store/anime/anime.types"
+import { IAnime, IAnimeInfo } from "../store/anime/anime.types"
 import { useActions } from "../hooks/useActions";
 import { useTypedSelection } from "../hooks/useTypedSelection";
-import { FaCheck, FaRegTrashAlt } from "react-icons/fa";
+import { FaRegTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { IoClose } from "react-icons/io5";
-import { AiOutlineClose } from "react-icons/ai";
 import { listTags } from "../store/watchlist/watchlist.slice";
 import { WatchlistTagSelect } from "./WatchlistTagSelect";
 
@@ -17,16 +14,16 @@ export const AnimeListItem = (anime:any) => {
 
   const {watchlist} = useTypedSelection(state => state)
 
-  const isInWatchlist = watchlist.items.some(p => p.mal_id === animeInfo.mal_id)
+  const isInWatchlist = watchlist.items.some((p:IAnime) => p.mal_id === animeInfo.mal_id)
 
-  function removeItemFromList(event){
+  function removeItemFromList(event:any){
     event.stopPropagation();
     event.preventDefault();
     removeItem({mal_id:animeInfo.mal_id})
   }
 
 
-  function changeItemListTag(newTag){
+  function changeItemListTag(newTag:listTags){
     
     changeListTag({mal_id:animeInfo.mal_id, newTag:newTag})
     
@@ -39,14 +36,14 @@ export const AnimeListItem = (anime:any) => {
           <Link to={`anime/${animeInfo.mal_id}`}>
             <img src={animeInfo.images.jpg.image_url} className="h-16"/>
             </Link>
-            <span className={`text-xl p-3 ${animeInfo.listTag === 'completed' ? 'line-through': ' '}`}>{animeInfo.title} - {animeInfo.listTag}</span>
+            <span className={`text-xl p-3 ${animeInfo.listTag === listTags.COMPLETED ? 'line-through': ' '}`}>{animeInfo.title}</span>
         </div>
 
 
 
 
         <div className="flex flex-col items-end gap-4">
-        <WatchlistTagSelect test={animeInfo.title} onChange={(val) => changeItemListTag(val)} options = {listTags} currentTag = {animeInfo.listTag}/>
+        <WatchlistTagSelect test={animeInfo.title} onChange={(val:listTags) => changeItemListTag(val)} options = {listTags} currentTag = {animeInfo.listTag}/>
         <a onClick={(event) => removeItemFromList(event)} className="text-white hover:text-red-600"><FaRegTrashAlt /></a>
         </div>
         

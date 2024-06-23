@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { IAnimeInfo } from "../store/anime/anime.types"
+import { IAnime } from "../store/anime/anime.types"
 import { useActions } from "../hooks/useActions";
 import { useTypedSelection } from "../hooks/useTypedSelection";
 import { Link } from "react-router-dom";
 
-export const AnimeCard = ({ anime, index }) => {
+export const AnimeCard = ({ anime, index }:{anime:IAnime, index:number}) => {
 
   const [hover, setHover] = useState(false);
   const onHover = () => {
@@ -16,7 +16,7 @@ export const AnimeCard = ({ anime, index }) => {
 
   const {addItem} = useActions();
   const {watchlist} = useTypedSelection(state => state)
-  const isInWatchlist = watchlist.items.some(p => p.mal_id === anime.mal_id)
+  const isInWatchlist = watchlist.items.some((p:IAnime) => p.mal_id === anime.mal_id)
 
   function AddToWatchlist(event:any){
     event.preventDefault();

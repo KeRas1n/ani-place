@@ -8,10 +8,9 @@ export const Watchlist = () => {
     const {watchlist} = useTypedSelection(state => state);
     const [tag, setTag] = useState('ALL')
 
-
-
     store.subscribe(()=>{
-    localStorage.setItem('reduxState', JSON.stringify(watchlist.items));
+    const state = store.getState();
+    localStorage.setItem('reduxState', JSON.stringify(state.watchlist.items));
 })
 
 console.log( JSON.stringify(watchlist.items))

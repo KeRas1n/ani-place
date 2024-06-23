@@ -8,7 +8,7 @@ const items = []
 //const initialState = {items:items}
 
 const initialState = localStorage.getItem('reduxState') 
-    ? {items:JSON.parse(localStorage.getItem('reduxState'))}
+    ? {items:JSON.parse(localStorage.getItem('reduxState'))} //NO PROBLEM
     : {items:items}
 
 export enum listTags{
@@ -30,16 +30,6 @@ export const watchlistSlice = createSlice({
         removeItem:(state, action:PayloadAction<{mal_id:number}>) => {
             return {...state, items:state.items.filter(p => p.mal_id !== action.payload.mal_id)}
         },
-        setWatchedItem:(state, action:PayloadAction<{mal_id:number}>) => {
-            return {
-                ...state,
-                items: state.items.map(item =>
-                  item.mal_id === action.payload.mal_id
-                    ? { ...item, listTag:listTags.COMPLETED}
-                    : item
-                ),
-              };
-        },
         changeListTag:(state, action:PayloadAction<{mal_id:number, newTag:string}>) => {
             return {
                 ...state,
@@ -54,8 +44,6 @@ export const watchlistSlice = createSlice({
     }
 
 })
-
-
 
 
 
