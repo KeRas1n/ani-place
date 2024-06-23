@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux"
 import {watchlistActions} from '../store/watchlist/watchlist.slice'
 
 const allActions = {
-    ...watchlistActions
+    ...watchlistActions,
 }
 
 export const useActions = () => {

@@ -10,11 +10,11 @@ export const Watchlist = () => {
         <h1 className="text-3xl">My Watchlist</h1>
 
         <div className="grid mt-3">
-            {watchlist.length ?
+            {watchlist.items.length ?
 
             
 
-            watchlist.map((anime:any) => (
+            watchlist.items.map((anime:any) => (
                 <AnimeListItem anime = {anime}/>
             ))
 

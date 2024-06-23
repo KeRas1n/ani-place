@@ -10,6 +10,7 @@ import { useInView } from 'react-intersection-observer'
 function HomePage() {
   
   const [page, setPage] = useState(1);
+  console.log(page)
   const {data, isLoading, error} = useGetTopAnimeQuery({limit: 20, page: page})
   const{inView, ref} = useInView()
   console.log(data)

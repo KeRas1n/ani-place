@@ -2,6 +2,7 @@ import { Store, configureStore } from "@reduxjs/toolkit";
 import { animeapi } from "./anime/anime.api";
 import { watchlistReducer } from "./watchlist/watchlist.slice";
 import { animesingleapi } from "./anime/singleanime.api";
+import { watchedlistReducer } from "./watchlist/watchedlist.slice";
 
 
 

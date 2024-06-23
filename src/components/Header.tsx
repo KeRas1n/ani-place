@@ -1,3 +1,4 @@
+import { CgProfile } from "react-icons/cg";
 import { Link, NavLink } from "react-router-dom";
 
 export default function Header() {
@@ -20,7 +21,7 @@ export default function Header() {
 
         <div className="text-xl inline-grid flex justify-end">
         <NavLink to={'/profile'} className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? 'text-primary' : ""}>My profile</NavLink>
+                isPending ? "pending" : isActive ? 'text-primary' : ""}><CgProfile size={25} /></NavLink>
         </div>
         </div>
     </header>

@@ -5,7 +5,6 @@ import { useTypedSelection } from "../hooks/useTypedSelection";
 import { Link } from "react-router-dom";
 
 export const AnimeCard = ({ anime, index }) => {
-  console.log(anime)
 
   const [hover, setHover] = useState(false);
   const onHover = () => {
@@ -18,8 +17,8 @@ export const AnimeCard = ({ anime, index }) => {
   const {addItem} = useActions();
 
   const {watchlist} = useTypedSelection(state => state)
-
-  const isInWatchlist = watchlist.some(p => p.mal_id === anime.mal_id)
+  //console.log(watchlist)
+  const isInWatchlist = watchlist.items.some(p => p.mal_id === anime.mal_id)
 
   function AddToWatchlist(event:any){
     event.preventDefault();
