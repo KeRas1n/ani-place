@@ -1,10 +1,10 @@
 import { listTags } from "../store/watchlist/watchlist.slice"
 
-export const WatchlistTagSelect = ({options, currentTag, onChange, test}) => {
+export const WatchlistTagSelect = ({options, currentTag, onChange}) => {
 
   return (
-    <select id={test}
-    className="bg-black p-2 cursor-pointer" 
+    <select
+    className="bg-black p-2 cursor-pointer text-center" 
     defaultValue={currentTag}
     value={currentTag}
     onChange={(e) => onChange(e.target.value)}

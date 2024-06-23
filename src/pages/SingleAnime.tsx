@@ -4,6 +4,9 @@ import { IoStar } from "react-icons/io5";
 import { FaUsers } from "react-icons/fa6";
 import { useActions } from "../hooks/useActions";
 import { useTypedSelection } from "../hooks/useTypedSelection";
+import { WatchlistTagSelect } from "../components/WatchlistTagSelect";
+import { listTags } from "../store/watchlist/watchlist.slice";
+import { useEffect } from "react";
 
 export const SingleAnime = () => {
   const {id} = useParams();
@@ -14,9 +17,13 @@ export const SingleAnime = () => {
 
   console.log(animeInfo)
     
-  const {addItem} = useActions();
+  const {addItem, changeListTag, removeItem} = useActions();
   const {watchlist} = useTypedSelection(state => state)
-  const isInWatchlist = watchlist?.items?.some((p:IAnime) => p.mal_id === animeInfo?.mal_id) 
+  const isInWatchlist = watchlist?.items?.some((p:IAnime) => p.mal_id === animeInfo?.mal_id)
+
+  function changeItemListTag(newTag:listTags){
+    changeListTag({mal_id:animeInfo.mal_id, newTag:newTag})
+  }
 
   return (
     <div className="p-[2rem] wrapper mt-3">
@@ -28,11 +35,16 @@ export const SingleAnime = () => {
       <div className="grid anime-grid gap-3 w-full">
       <div className="flex flex-col justify-center">
           <img src={animeInfo.images.jpg.image_url} className="rounded-lg" width='500px'/>
-          <button onClick={() =>  !isInWatchlist && addItem(animeInfo)} className="mt-5 p-2 hover:bg-primary">{isInWatchlist? 
+          <button onClick={() =>  !isInWatchlist ? addItem(animeInfo) : removeItem(animeInfo)} className="mt-5 p-2 hover:bg-primary">{isInWatchlist? 
           'Added To Watchlist' 
           :
           'Add to Watchlist'
           }</button>
+          {isInWatchlist?
+          <WatchlistTagSelect onChange={(val:listTags) => changeItemListTag(val)} options = {listTags} currentTag = {watchlist.items.find(p => p.mal_id === animeInfo.mal_id)?.listTag}/>
+          :
+          ' '
+        }
 
           <div className="bg-[#1c1c1c] p-6 mt-3 rounded-lg">
             <div className="flex flex-col justify-center">

@@ -10,7 +10,7 @@ export const AnimeListItem = (anime:any) => {
   const animeInfo:IAnimeInfo = anime.anime
   console.log(animeInfo)
 
-  const {removeItem, setWatchedItem, changeListTag} = useActions();
+  const {removeItem, changeListTag} = useActions();
 
   const {watchlist} = useTypedSelection(state => state)
 
@@ -43,7 +43,7 @@ export const AnimeListItem = (anime:any) => {
 
 
         <div className="flex flex-col items-end gap-4">
-        <WatchlistTagSelect test={animeInfo.title} onChange={(val:listTags) => changeItemListTag(val)} options = {listTags} currentTag = {animeInfo.listTag}/>
+        <WatchlistTagSelect onChange={(val:listTags) => changeItemListTag(val)} options = {listTags} currentTag = {animeInfo.listTag}/>
         <a onClick={(event) => removeItemFromList(event)} className="text-white hover:text-red-600"><FaRegTrashAlt /></a>
         </div>
         

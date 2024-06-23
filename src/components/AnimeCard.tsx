@@ -14,7 +14,7 @@ export const AnimeCard = ({ anime, index }:{anime:IAnime, index:number}) => {
     setHover(false);
   };
 
-  const {addItem} = useActions();
+  const {addItem, removeItem} = useActions();
   const {watchlist} = useTypedSelection(state => state)
   const isInWatchlist = watchlist.items.some((p:IAnime) => p.mal_id === anime.mal_id)
 
@@ -22,7 +22,7 @@ export const AnimeCard = ({ anime, index }:{anime:IAnime, index:number}) => {
     event.preventDefault();
     event.stopPropagation();
     
-    !isInWatchlist && addItem(anime)
+    !isInWatchlist ? addItem(anime) : removeItem(anime)
   }
   
 
