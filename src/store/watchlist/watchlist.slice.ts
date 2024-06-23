@@ -1,16 +1,23 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IAnime } from "../anime/anime.types";
+import { store } from "../store";
+
+
 
 const items = []
-const initialState = {items:items}
+//const initialState = {items:items}
+
+const initialState = localStorage.getItem('reduxState') 
+    ? {items:JSON.parse(localStorage.getItem('reduxState'))}
+    : {items:items}
 
 export enum listTags{
-    PLAN_TO_WATCH = "plan",
-    WATCHING = "watching",
-    COMPLETED = "completed",
-    DROPPED = "dropped",
-    ON_HOLD = "onHold",
-    FAVOURITE = "favourite",
+    PLAN_TO_WATCH = "Plan",
+    WATCHING = "Watching",
+    COMPLETED = "Completed",
+    DROPPED = "Dropped",
+    ON_HOLD = "On Hold",
+    FAVOURITE = "Favourite",
 }
 
 export const watchlistSlice = createSlice({
@@ -49,5 +56,10 @@ export const watchlistSlice = createSlice({
 })
 
 
+
+
+
 export const watchlistReducer = watchlistSlice.reducer
 export const watchlistActions = watchlistSlice.actions
+
+

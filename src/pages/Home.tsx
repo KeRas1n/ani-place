@@ -6,6 +6,7 @@ import { Watchlist } from '../components/Watchlist'
 import { animeapi, useGetTopAnimeQuery } from '../store/anime/anime.api'
 import { useInView } from 'react-intersection-observer'
 import { useDispatch } from 'react-redux'
+import { store } from '../store/store'
 
 
 function HomePage() {
@@ -16,7 +17,7 @@ function HomePage() {
     dispatch(animeapi.util.resetApiState());
   }, []);
   
-  
+
   const [page, setPage] = useState(1);
   console.log(page)
   const {data, isLoading, error} = useGetTopAnimeQuery({limit: 20, page: page})
