@@ -3,16 +3,27 @@ import '../App.css'
 import { AnimeCard } from '../components/AnimeCard'
 import Header from '../components/Header'
 import { Watchlist } from '../components/Watchlist'
-import { useGetTopAnimeQuery } from '../store/anime/anime.api'
+import { animeapi, useGetTopAnimeQuery } from '../store/anime/anime.api'
 import { useInView } from 'react-intersection-observer'
+import { useDispatch } from 'react-redux'
 
 
 function HomePage() {
+
+  //reset cache of top anime
+  useEffect(() => {
+    console.log("EFFECT")
+    dispatch(animeapi.util.resetApiState());
+  }, []);
+  
   
   const [page, setPage] = useState(1);
   console.log(page)
   const {data, isLoading, error} = useGetTopAnimeQuery({limit: 20, page: page})
   const{inView, ref} = useInView()
+
+  const dispatch = useDispatch()
+
   console.log(data)
 
   const animeData = data?.data;
@@ -24,6 +35,8 @@ function HomePage() {
 
     console.log(page)
   }, [inView, isLoading]);
+
+  
 
   return (
     <>

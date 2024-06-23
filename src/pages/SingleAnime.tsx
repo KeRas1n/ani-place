@@ -9,7 +9,9 @@ export const SingleAnime = () => {
   const {id} = useParams();
 
   const {data, isLoading, error} = useGetSingleAnimeQuery(id)
-  const animeInfo = data?.data
+  const animeInfo = data?.data;
+
+  console.log(data)
     
   const {addItem} = useActions();
   const {watchlist} = useTypedSelection(state => state)
