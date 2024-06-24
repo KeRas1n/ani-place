@@ -1,15 +1,25 @@
-import { Store, configureStore } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import { animeapi } from "./anime/anime.api";
 import { watchlistReducer } from "./watchlist/watchlist.slice";
 import { animesingleapi } from "./anime/singleanime.api";
-import { watchedlistReducer } from "./watchlist/watchedlist.slice";
+import { animesearchapi } from "./anime/animesearch.api";
 
 
 
 
 export const store = configureStore({
-    reducer:{[animeapi.reducerPath]: animeapi.reducer, watchlist:watchlistReducer, [animesingleapi.reducerPath]: animesingleapi.reducer,},
-    middleware: getDefaultMiddleware => getDefaultMiddleware().concat([animeapi.middleware, animesingleapi.middleware]),
+    reducer:{[animeapi.reducerPath]: animeapi.reducer, 
+        watchlist:watchlistReducer, 
+        [animesingleapi.reducerPath]: animesingleapi.reducer,
+        [animesearchapi.reducerPath]: animesearchapi.reducer,
+
+    },
+
+    middleware: getDefaultMiddleware => getDefaultMiddleware().concat([
+        animeapi.middleware, 
+        animesingleapi.middleware, 
+        animesearchapi.middleware,
+    ]),
 })
 
 

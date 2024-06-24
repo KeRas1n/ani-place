@@ -1,20 +1,25 @@
 import { useEffect, useState } from 'react'
 import '../App.css'
 import { AnimeCard } from '../components/AnimeCard'
-import Header from '../components/Header'
-import { Watchlist } from '../components/Watchlist'
+
 import { animeapi, useGetTopAnimeQuery } from '../store/anime/anime.api'
 import { useInView } from 'react-intersection-observer'
 import { useDispatch } from 'react-redux'
-import { store } from '../store/store'
 
 
-function HomePage() {
+
+function TopAnimePage() {
+
+  //reset cache of top anime
+  useEffect(() => {
+    console.log("EFFECT")
+    dispatch(animeapi.util.resetApiState());
+  }, []);
+  
 
   const [page, setPage] = useState(1);
-
+  console.log(page)
   const {data, isLoading, error} = useGetTopAnimeQuery({limit: 20, page: page})
-
   const{inView, ref} = useInView()
 
   const dispatch = useDispatch()
@@ -36,7 +41,7 @@ function HomePage() {
   return (
     <>
       <div className='wrapper root mt-4'>
-        <div className='text-left text-3xl'>Catalog of Anime</div>
+        <div className='text-left text-3xl'>Top Anime</div>
 
         {isLoading? 'LOADING...' : error ? <div className='text-red-600'>{error.data.status} {error.data.message}</div> : (
 
@@ -61,4 +66,4 @@ function HomePage() {
 }
 
 
-export default HomePage
+export default TopAnimePage

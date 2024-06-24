@@ -38,7 +38,7 @@ export const AnimeCard = ({ anime, index }:{anime:IAnime, index:number}) => {
           <div className={` ${hover ? 'opacity-100' : ' opacity-0'} absolute w-full h-full top-0 transition-all rounded-xl z-50`}>
 
             <div className="p-2 text-md text-white">
-              {anime.synopsis.slice(0, 200) + '...'}
+              {anime.synopsis?.slice(0, 200) + '...' }
             </div>
 
           
