@@ -1,5 +1,3 @@
-import { listTags } from "../store/watchlist/watchlist.slice"
-
 export const WatchlistTagSelect = ({options, currentTag, onChange}:{options:any, currentTag:any, onChange:any}) => {
 
   return (

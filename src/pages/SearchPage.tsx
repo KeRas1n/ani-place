@@ -8,11 +8,11 @@ import { useDispatch } from 'react-redux'
 import { SearchBarCatalog } from '../components/SearchBarCatalog'
 import { PropertiesSidebar } from '../components/PropertiesSidebar'
 
-
+/*
 interface SearchParamsProp{
   q:string,
   order_by:string
-}
+}*/
 
 
 function SearchPage() {
@@ -99,7 +99,7 @@ function SearchPage() {
 
           <div className='flex flex-wrap justify-around mt-10 gap-y-3'>
 
-            {animeData?.map((anime, index ) => (
+            {animeData?.map((anime ) => (
               
               <AnimeCard index={anime.mal_id} key={anime.mal_id} anime = {anime}/>
 

@@ -11,7 +11,7 @@ import { IAnime } from "../store/anime/anime.types";
 export const SingleAnime = () => {
   const {id} = useParams();
 
-  const {data, isLoading, error} = useGetSingleAnimeQuery(Number(id))
+  const {data, isLoading} = useGetSingleAnimeQuery(Number(id))
   
   const animeInfo:any = data?.data;
 
