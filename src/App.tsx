@@ -6,11 +6,13 @@ import { Profile } from './pages/Profile'
 import { SingleAnime } from './pages/SingleAnime'
 import TopAnimePage from './pages/TopAnime'
 import SearchPage from './pages/SearchPage'
+import BottomNav from './components/BottomNav'
 
 
 function App() {
   return <>
   <Header/>
+  <BottomNav/>
   <Routes>
     <Route path='/' element={<HomePage/>} />
     <Route path='/profile' element={<Profile/>} />
