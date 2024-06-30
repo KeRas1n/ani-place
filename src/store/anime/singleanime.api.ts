@@ -5,7 +5,7 @@ export const animesingleapi = createApi({
     reducerPath:'api/animesingle',
     baseQuery: fetchBaseQuery({baseUrl:'https://api.jikan.moe/v4/'}),
     endpoints: build => ({
-        getSingleAnime:build.query<IAnime[], number>({query: (id:number) => `anime/${id}/full`})
+        getSingleAnime:build.query<IAnime, number>({query: (id:number) => `anime/${id}/full`})
     })
 })
 

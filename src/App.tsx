@@ -19,7 +19,10 @@ function App() {
     <Route path='/profile' element={<Profile/>} />
     <Route path='/catalog/anime/:id' element={<SingleAnime/>} />
     <Route path='/anime/:id' element={<SingleAnime/>} />
-    <Route path='/catalog' element={<SearchPage/>} />
+    <Route path='/catalog' element={<SearchPage/>}>
+    
+    
+    </Route>
     <Route path='/top-anime/' element={<TopAnimePage/>} />
   </Routes>
   </>

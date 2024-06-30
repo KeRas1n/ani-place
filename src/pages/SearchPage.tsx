@@ -9,21 +9,22 @@ import { SearchBarCatalog } from '../components/SearchBarCatalog'
 import { PropertiesSidebar } from '../components/PropertiesSidebar'
 
 
+interface SearchParamsProp{
+  q:string,
+  order_by:string
+}
+
+
 function SearchPage() {
 
   const dispatch = useDispatch()
-
-    
     
   let [searchParams, setSearchParams] = useSearchParams();
-
-
-  
   
   const [page, setPage] = useState(1);
 
 
-/*
+
   //reset cache of top anime
   useEffect(() => {
     console.log("EFFECT")
@@ -31,9 +32,9 @@ function SearchPage() {
     setPage(1);
   }, [searchParams]);
 
-*/
+
   
-  const {data, isLoading, error} = useGetAnimeSearchQuery({query:searchParams, page:page});
+  const {data, isLoading, error} = useGetAnimeSearchQuery({query:searchParams, limit:50, page:page});
 
   const{inView, ref} = useInView()
 
@@ -63,9 +64,23 @@ function SearchPage() {
   const Order = (value:string) => {
     dispatch(animesearchapi.util.resetApiState());
     setPage(1);
-    setSearchParams({q:searchParams.get('q'), order_by:value})
+
+    //setSearchParams(createSearchParams({q:searchParams.get('q')?.toString(), order_by:value}))
+    setSearchParams(new URLSearchParams([['q', `${searchParams.get('q')? searchParams.get('q') : ''}` ],
+    ['order_by', value]]))
   }
 
+
+
+
+  useEffect(() => {
+    if (error) {
+      if ("data" in error) {
+      const errorData = error as any;
+      console.log(errorData.data.message)
+      }
+    }
+    }, [error]);
 
 
   return (
@@ -80,13 +95,13 @@ function SearchPage() {
         </div>
 
 
-        {isLoading? 'LOADING...' : error ? <div className='text-red-600'>{error.data.status} {error.data.message}</div> : (
+        {isLoading? 'LOADING...' : error ? <div className='text-red-600'>{'data' in error ? (error as any).data.status + ' ' + (error as any).data.message : ' '}</div> : (
 
           <div className='flex flex-wrap justify-around mt-10 gap-y-3'>
 
-            {animeData.map((anime, index ) => (
+            {animeData?.map((anime, index ) => (
               
-              <AnimeCard key={anime.mal_id} anime = {anime}/>
+              <AnimeCard index={anime.mal_id} key={anime.mal_id} anime = {anime}/>
 
             ))}
 

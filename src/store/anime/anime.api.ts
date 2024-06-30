@@ -1,12 +1,19 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { IAnime } from "./anime.types";
+import { AnimeResponse, AnimeSearchArgs } from "./animesearch.api";
 
 export const animeapi = createApi({
     reducerPath:'api/anime',
     baseQuery: fetchBaseQuery({baseUrl:'https://api.jikan.moe/v4/'}),
     endpoints: (builder) => ({
-        getTopAnime:builder.query<IAnime[], number>({
-            query: ({limit = 5, page = 1}) => `top/anime?limit=${limit}&page=${page}`,
+        getTopAnime:builder.query<AnimeResponse, AnimeSearchArgs>({
+            query: (args) => {
+              const {limit, page} = args;
+
+              return{
+                url:`top/anime?limit=${limit}&page=${page}`
+              }
+              
+            },
             serializeQueryArgs: ({ endpointName }) => {
                 return endpointName
               },

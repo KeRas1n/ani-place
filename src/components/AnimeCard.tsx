@@ -28,7 +28,7 @@ export const AnimeCard = ({ anime, index }:{anime:IAnime, index:number}) => {
 
   return (
     <div className="rounded-xl border-black text-center  h-[26rem] flex flex-col w-56 cursor-pointer">
-          <Link to={`anime/${anime.mal_id}`} className="text-white">
+          <Link to={`/catalog/anime/${anime.mal_id}`} className="text-white">
         <div className="rounded-xl h-80 p-0 relative" onMouseEnter={onHover} onMouseLeave={onLeave}>
 
           <div className="relative overflow-hidden inline-block rounded-xl  h-full w-full">

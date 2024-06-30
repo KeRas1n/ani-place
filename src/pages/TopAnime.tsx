@@ -16,10 +16,11 @@ function TopAnimePage() {
     dispatch(animeapi.util.resetApiState());
   }, []);
   
-
+  //const [page, setPage] = useState(sessionStorage.getItem('page')? Number(sessionStorage.getItem('page')) : 1);
   const [page, setPage] = useState(1);
+
   console.log(page)
-  const {data, isLoading, error} = useGetTopAnimeQuery({limit: 20, page: page})
+  const {data, isLoading, error} = useGetTopAnimeQuery({query:null, limit: 20, page: page})
   const{inView, ref} = useInView()
 
   const dispatch = useDispatch()
@@ -32,8 +33,7 @@ function TopAnimePage() {
     if (inView && !isLoading) {
       setPage((prevPage) => prevPage + 1);
     }
-
-    console.log(page)
+    
   }, [inView, isLoading]);
 
   
@@ -43,13 +43,13 @@ function TopAnimePage() {
       <div className='wrapper root mt-4'>
         <div className='text-left text-3xl'>Top Anime</div>
 
-        {isLoading? 'LOADING...' : error ? <div className='text-red-600'>{error.data.status} {error.data.message}</div> : (
+        {isLoading? 'LOADING...' : error ? <div className='text-red-600'>{'data' in error ? (error as any).data.status + ' ' + (error as any).data.message : ' '}</div> : (
 
           <div className='flex flex-wrap justify-around mt-10 gap-y-3'>
 
-            {animeData.map((anime, index ) => (
+            {animeData?.map((anime, index ) => (
               
-              <AnimeCard key={anime.mal_id} anime = {anime}/>
+              <AnimeCard index={anime.mal_id} key={anime.mal_id} anime = {anime}/>
 
             ))}
 

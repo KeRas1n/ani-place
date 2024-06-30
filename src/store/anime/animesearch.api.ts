@@ -1,12 +1,30 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { IAnime } from "./anime.types";
 
+export interface AnimeSearchArgs {
+  query: URLSearchParams | null;
+  limit: number;
+  page: number;
+}
+
+export interface AnimeResponse {
+  data: IAnime[];
+  // other possible fields like pagination info...
+}
+
+
 export const animesearchapi = createApi({
     reducerPath:'api/animesearch',
     baseQuery: fetchBaseQuery({baseUrl:'https://api.jikan.moe/v4/'}),
     endpoints: (builder) => ({
-        getAnimeSearch:builder.query<IAnime[], number>({
-            query: ({query, page = 1}) => `anime?${query}&page=${page}`,
+        getAnimeSearch:builder.query<AnimeResponse, AnimeSearchArgs>({
+            //query: ({query, page = 1}:{query:string, page:number}) => `anime?${query}&page=${page}`,
+            query: (args) => {
+              const {query, page} = args;
+              return{
+                url:`anime?${query}&page=${page}`
+              }
+            },
 
             serializeQueryArgs: ({ endpointName }) => {
                 return endpointName

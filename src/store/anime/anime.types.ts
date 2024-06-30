@@ -1,6 +1,8 @@
 import { listTags } from "../watchlist/watchlist.slice";
 
 export interface IAnime{
+  data:any[],
+  
   mal_id: number;
 
   url: string;
