@@ -74,3 +74,45 @@ button:focus-visible {
   grid-template-columns: 25% 75%;
   align-items: start;
 }
+.singleAnimeContainer{
+  display: grid;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.bottomPanel{
+  display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .anime-list {
+    row-gap: 7.8rem !important;
+  }
+  .anime-list > div {
+    width: 10rem;
+    height: 20rem;
+  }
+  .animeCardDiv{
+    height: 5rem;
+  }
+
+  .bottomPanel{
+    display: block;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    z-index: 999;
+    background-color:#0a0a0a;
+  }
+
+  .header{
+    display: none;
+  }
+  .singleAnimeContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+
+}

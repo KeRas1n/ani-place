@@ -32,10 +32,13 @@ export const SingleAnime = () => {
       'LOADING' 
       :
       <>
-      <div className="grid anime-grid gap-3 w-full">
+      <div className="anime-grid singleAnimeContainer">
+        
+        
       <div className="flex flex-col justify-center">
           <img src={animeInfo.images.jpg.image_url} className="rounded-lg" width='500px'/>
-          <button onClick={() =>  !isInWatchlist ? addItem(animeInfo) : removeItem(animeInfo)} className="mt-5 p-2 hover:bg-primary">{isInWatchlist? 
+          <button onClick={() =>  !isInWatchlist ? addItem(animeInfo) : removeItem(animeInfo)} className="mt-5 p-2 hover:bg-primary">
+          {isInWatchlist? 
           'Added To Watchlist' 
           :
           'Add to Watchlist'
@@ -78,7 +81,7 @@ export const SingleAnime = () => {
           
         </div>
         
-        <div className="bg-[#1c1c1c] p-5 rounded-lg flex flex-col">
+        <div className="bg-[#1c1c1c] p-5 rounded-lg flex flex-col w-full">
           
           <div className="text-3xl flex justify-between">
             <div className="flex flex-col"><span className="text-3xl">{animeInfo.title}</span>
