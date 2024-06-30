@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 
 export const AnimeCard = ({ anime, index }:{anime:IAnime, index:number}) => {
 
+  console.log(index)
+
   const [hover, setHover] = useState(false);
   const onHover = () => {
     setHover(true);
