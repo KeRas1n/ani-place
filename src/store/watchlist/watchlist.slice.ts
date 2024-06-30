@@ -12,12 +12,12 @@ const initialState = localStorage.getItem('reduxState')
 
 
 export enum listTags{
-    PLAN_TO_WATCH = "Plan",
-    WATCHING = "Watching",
-    COMPLETED = "Completed",
-    DROPPED = "Dropped",
-    ON_HOLD = "On Hold",
-    FAVOURITE = "Favourite",
+    PLAN_TO_WATCH = "Plan"as any,
+    WATCHING = "Watching"as any,
+    COMPLETED = "Completed"as any,
+    DROPPED = "Dropped"as any,
+    ON_HOLD = "On Hold"as any,
+    FAVOURITE = "Favourite"as any,
 }
 
 export const watchlistSlice = createSlice({
@@ -30,7 +30,7 @@ export const watchlistSlice = createSlice({
         removeItem:(state, action:PayloadAction<{mal_id:number}>) => {
             return {...state, items:state.items.filter((p:any) => p.mal_id !== action.payload.mal_id)}
         },
-        changeListTag:(state, action:PayloadAction<{mal_id:number, newTag:string}>) => {
+        changeListTag:(state, action:PayloadAction<{mal_id:number, newTag:any}>) => {
             return {
                 ...state,
                 items: state.items.map((item:any) =>

@@ -1,6 +1,6 @@
 import { listTags } from "../store/watchlist/watchlist.slice"
 
-export const WatchlistTagSelect = ({options, currentTag, onChange}) => {
+export const WatchlistTagSelect = ({options, currentTag, onChange}:{options:any, currentTag:any, onChange:any}) => {
 
   return (
     <select
@@ -9,7 +9,7 @@ export const WatchlistTagSelect = ({options, currentTag, onChange}) => {
     value={currentTag}
     onChange={(e) => onChange(e.target.value)}
     >
-        {Object.keys(options).map(key => (
+        {Object.keys(options).map((key:any) => (
             <option value={options[key]}>{options[key]}</option>
         ))}
     </select>

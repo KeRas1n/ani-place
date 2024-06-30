@@ -1,6 +1,5 @@
-import { IAnime, IAnimeInfo } from "../store/anime/anime.types"
+import { IAnimeInfo } from "../store/anime/anime.types"
 import { useActions } from "../hooks/useActions";
-import { useTypedSelection } from "../hooks/useTypedSelection";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { listTags } from "../store/watchlist/watchlist.slice";
@@ -12,9 +11,6 @@ export const AnimeListItem = (anime:any) => {
 
   const {removeItem, changeListTag} = useActions();
 
-  const {watchlist} = useTypedSelection(state => state)
-
-  const isInWatchlist = watchlist.items.some((p:IAnime) => p.mal_id === animeInfo.mal_id)
 
   function removeItemFromList(event:any){
     event.stopPropagation();

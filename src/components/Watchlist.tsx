@@ -22,7 +22,7 @@ console.log( JSON.stringify(watchlist.items))
         
         <div className="h-full p-4 rounded-lg flex flex-col gap-2 bg-[#0a0a0a]">
           <button className={`${tag === 'ALL' ? 'bg-primary' : ' '} p-2`} onClick={() => setTag('ALL')}>All</button>
-          {Object.keys(listTags).map(key => (
+          {Object.keys(listTags).map((key:any) => (
             <button className={`${tag === listTags[key] ? 'bg-primary' : ' '} p-2`} onClick={() => setTag(listTags[key])}>{listTags[key]}</button>
           ))}
         </div>
@@ -32,8 +32,8 @@ console.log( JSON.stringify(watchlist.items))
 
             Object.values(listTags).includes(tag)
             ?
-            watchlist.items.filter(p => p.listTag === tag).length ?
-            watchlist.items.filter(p => p.listTag === tag).map((anime:any) => (
+            watchlist.items.filter((p:any) => p.listTag === tag).length ?
+            watchlist.items.filter((p:any) => p.listTag === tag).map((anime:any) => (
                 <AnimeListItem id={anime.mal_id + '-watchlist'} anime = {anime}/>
             ))
 

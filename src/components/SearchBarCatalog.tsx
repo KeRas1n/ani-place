@@ -12,7 +12,7 @@ export enum OrderByTag{
 
 
 //{q:value}
-export const SearchBarCatalog = ({OnSearch, params, onChangeOrder}) => {
+export const SearchBarCatalog = ({OnSearch, params, onChangeOrder}:{OnSearch:any, params:any, onChangeOrder:any}) => {
 
   const[val, setVal] = useState(params.get('q'));
   

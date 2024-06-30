@@ -47,7 +47,7 @@ function TopAnimePage() {
 
           <div className='flex flex-wrap justify-around mt-10 gap-y-3'>
 
-            {animeData?.map((anime, index ) => (
+            {animeData?.map((anime) => (
               
               <AnimeCard index={anime.mal_id} key={anime.mal_id} anime = {anime}/>
 

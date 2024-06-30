@@ -1,13 +1,8 @@
 import { useEffect, useState } from 'react'
 import '../App.css'
 import { AnimeCard } from '../components/AnimeCard'
-import Header from '../components/Header'
-import { Watchlist } from '../components/Watchlist'
-import { animeapi, useGetTopAnimeQuery } from '../store/anime/anime.api'
+import { useGetTopAnimeQuery } from '../store/anime/anime.api'
 import { useInView } from 'react-intersection-observer'
-import { useDispatch } from 'react-redux'
-import { store } from '../store/store'
-import { usePages } from '../hooks/usePages'
 
 
 function HomePage() {
@@ -17,8 +12,6 @@ function HomePage() {
   const {data, isLoading, error} = useGetTopAnimeQuery({query: null, limit: 20, page: page})
 
   const{inView, ref} = useInView()
-
-  const dispatch = useDispatch()
 
   console.log(data)
 

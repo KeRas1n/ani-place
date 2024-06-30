@@ -1,7 +1,6 @@
 import { CgProfile } from "react-icons/cg";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/aniplace-logo-2.png";
-import { SearchBar } from "./SearchBar";
 
 
 export default function Header() {
