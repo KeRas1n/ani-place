@@ -1,5 +1,5 @@
 export const PropertiesSidebar = () => {
   return (
-    <div className="root mt-4">PropertiesSidebar</div>
+    <div className="sidebar root mt-4">PropertiesSidebar</div>
   )
 }

@@ -97,7 +97,7 @@ export const SingleAnime = () => {
           {animeInfo.synopsis}
           </div>
 
-          <div className="mt-8 flex">
+          <div className="mt-8 flex flex-wrap">
             {animeInfo.genres.map((genre:any) => (
               <div className="ml-2 p-2 border border-primary rounded-lg">{genre.name}</div>
             ))}

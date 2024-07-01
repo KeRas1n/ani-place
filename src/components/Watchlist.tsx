@@ -15,19 +15,19 @@ export const Watchlist = () => {
 
 console.log( JSON.stringify(watchlist.items))
   return (
-    <div className="p-[2rem] rounded-lg text-lg top-36 right-0 bg-[#1c1c1c] wrapper mt-5">
+    <div className="rounded-lg text-lg top-36 bg-[#1c1c1c] wrapper mt-5">
         <h1 className="text-3xl">My Watchlist</h1>
 
-        <div className="flex mt-2">
+        <div className="flex mobile:flex-col mt-2">
         
-        <div className="h-full p-4 rounded-lg flex flex-col gap-2 bg-[#0a0a0a]">
+        <div className="h-full p-4 rounded-lg flex flex-wrap mobile:flex-row flex-col gap-2 bg-[#0a0a0a]">
           <button className={`${tag === 'ALL' ? 'bg-primary' : ' '} p-2`} onClick={() => setTag('ALL')}>All</button>
           {Object.keys(listTags).map((key:any) => (
             <button className={`${tag === listTags[key] ? 'bg-primary' : ' '} p-2`} onClick={() => setTag(listTags[key])}>{listTags[key]}</button>
           ))}
         </div>
 
-        <div className="grid mt-3">
+        <div className="watchlist flex flex-wrap mt-3">
             {
 
             Object.values(listTags).includes(tag)

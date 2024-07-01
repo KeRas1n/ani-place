@@ -87,8 +87,9 @@ function SearchPage() {
     <>
     <div className='flex justify-center gap-0'>
       <div className='searchWrapper root mt-4'>
-        <div className='flex justify-between'>
+        <div className='flex mobile:flex-col justify-between'>
         <div className='text-left text-3xl'>Search of Anime</div>
+        
         <SearchBarCatalog params={searchParams} onChangeOrder={(value:string) => Order(value)} OnSearch = {(value:string) => Search(value)}/>
 
 
@@ -97,7 +98,7 @@ function SearchPage() {
 
         {isLoading? 'LOADING...' : error ? <div className='text-red-600'>{'data' in error ? (error as any).data.status + ' ' + (error as any).data.message : ' '}</div> : (
 
-          <div className='flex flex-wrap justify-around mt-10 gap-y-3'>
+          <div className='flex flex-wrap justify-around mt-10 gap-y-3 anime-list'>
 
             {animeData?.map((anime ) => (
               

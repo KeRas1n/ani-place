@@ -27,10 +27,12 @@ export const AnimeListItem = (anime:any) => {
 
   return (
     
-    <div className="border-black h-20 flex justify-between items-center cursor-pointer border m-1 p-1 border-[#646cff]">
+    <div className="border-black w-full h-20 flex justify-between items-center cursor-pointer border m-1 p-1 border-[#646cff]">
         <div className="flex">
           <Link to={`/catalog/anime/${animeInfo.mal_id}`}>
-            <img src={animeInfo.images.jpg.image_url} className="h-16"/>
+          <div className="h-full w-16">
+            <img src={animeInfo.images.jpg.image_url} className="h-20"/>
+          </div>
             </Link>
             <span className={`text-xl p-3 ${animeInfo.listTag === listTags.COMPLETED ? 'line-through': ' '}`}>{animeInfo.title}</span>
         </div>
