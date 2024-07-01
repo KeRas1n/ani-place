@@ -11,6 +11,12 @@ function HomePage() {
 
   const [page, setPage] = useState(1);
 
+  //reset cache of top anime
+  useEffect(() => {
+    console.log("EFFECT")
+    dispatch(animeapi.util.resetApiState());
+    setPage(1);
+  }, []);
   const {data, isLoading, error} = useGetTopAnimeQuery({query: null, limit: 20, page: page})
 
   const{inView, ref} = useInView()
@@ -19,12 +25,6 @@ function HomePage() {
 
   const animeData = data?.data;
 
-  //reset cache of top anime
-  useEffect(() => {
-    console.log("EFFECT")
-    dispatch(animeapi.util.resetApiState());
-    setPage(1);
-  }, []);
 
   useEffect(() => {
     if (inView && !isLoading) {

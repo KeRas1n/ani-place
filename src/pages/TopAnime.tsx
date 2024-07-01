@@ -56,7 +56,7 @@ function TopAnimePage() {
 
           </div>
         )}
-        <div ref={ref}>LOAD MORE?</div>
+        <div ref={ref}></div>
         
         
         
