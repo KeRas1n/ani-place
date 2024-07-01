@@ -28,7 +28,7 @@ function SearchPage() {
   //reset cache of top anime
   useEffect(() => {
     console.log("EFFECT")
-    //dispatch(animesearchapi.util.resetApiState());
+    dispatch(animesearchapi.util.resetApiState());
     setPage(1);
   }, [searchParams]);
 

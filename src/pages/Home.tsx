@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react'
 import '../App.css'
 import { AnimeCard } from '../components/AnimeCard'
-import { useGetTopAnimeQuery } from '../store/anime/anime.api'
+import { animeapi, useGetTopAnimeQuery } from '../store/anime/anime.api'
 import { useInView } from 'react-intersection-observer'
+import { useDispatch } from 'react-redux'
 
 
 function HomePage() {
+  const dispatch = useDispatch()
 
   const [page, setPage] = useState(1);
 
@@ -16,6 +18,13 @@ function HomePage() {
   console.log(data)
 
   const animeData = data?.data;
+
+  //reset cache of top anime
+  useEffect(() => {
+    console.log("EFFECT")
+    dispatch(animeapi.util.resetApiState());
+    setPage(1);
+  }, []);
 
   useEffect(() => {
     if (inView && !isLoading) {
