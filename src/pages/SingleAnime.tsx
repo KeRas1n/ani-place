@@ -26,8 +26,7 @@ export const SingleAnime = () => {
     changeListTag({mal_id:animeInfo.mal_id, newTag:newTag})
   }
 
-  useWatchlistSync();
-  
+
   return (
     <div className="p-[2rem] wrapper mt-3">
       {isLoading

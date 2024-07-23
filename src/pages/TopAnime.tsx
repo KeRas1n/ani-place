@@ -37,7 +37,6 @@ function TopAnimePage() {
     
   }, [inView, isLoading]);
 
-  useWatchlistSync();
 
   return (
     <>

@@ -36,7 +36,6 @@ function HomePage() {
     console.log(page)
   }, [inView, isLoading]);
 
-  useWatchlistSync();
 
   return (
     <>

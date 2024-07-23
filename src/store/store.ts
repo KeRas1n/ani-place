@@ -3,8 +3,7 @@ import { animeapi } from "./anime/anime.api";
 import { watchlistReducer } from "./watchlist/watchlist.slice";
 import { animesingleapi } from "./anime/singleanime.api";
 import { animesearchapi } from "./anime/animesearch.api";
-
-
+import { localStorageSync } from "./middleware/localStorageSync";
 
 
 export const store = configureStore({
@@ -19,6 +18,7 @@ export const store = configureStore({
         animeapi.middleware, 
         animesingleapi.middleware, 
         animesearchapi.middleware,
+        localStorageSync
     ]),
 })
 

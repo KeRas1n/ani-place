@@ -3,7 +3,7 @@ import { useWatchlistSync } from "../hooks/useWatchlistSync";
 
 export const Profile = () => {
 
-  useWatchlistSync();
+
   return (
     <div className='wrapper root mt-4'>
 

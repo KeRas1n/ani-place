@@ -84,8 +84,6 @@ function SearchPage() {
     }, [error]);
 
 
-    useWatchlistSync();
-
   return (
     <>
     <div className='flex justify-center gap-0'>
