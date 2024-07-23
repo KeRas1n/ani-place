@@ -17,6 +17,7 @@ function HomePage() {
     dispatch(animeapi.util.resetApiState());
     setPage(1);
   }, []);
+  
   const {data, isLoading, error} = useGetTopAnimeQuery({query: null, limit: 20, page: page})
 
   const{inView, ref} = useInView()
