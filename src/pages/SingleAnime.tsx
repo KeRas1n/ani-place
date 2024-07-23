@@ -7,6 +7,7 @@ import { useTypedSelection } from "../hooks/useTypedSelection";
 import { WatchlistTagSelect } from "../components/WatchlistTagSelect";
 import { listTags } from "../store/watchlist/watchlist.slice";
 import { IAnime } from "../store/anime/anime.types";
+import { useWatchlistSync } from "../hooks/useWatchlistSync";
 
 export const SingleAnime = () => {
   const {id} = useParams();
@@ -25,6 +26,8 @@ export const SingleAnime = () => {
     changeListTag({mal_id:animeInfo.mal_id, newTag:newTag})
   }
 
+  useWatchlistSync();
+  
   return (
     <div className="p-[2rem] wrapper mt-3">
       {isLoading

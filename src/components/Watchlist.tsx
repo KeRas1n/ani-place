@@ -3,18 +3,13 @@ import { useTypedSelection } from "../hooks/useTypedSelection";
 import { AnimeListItem } from "./AnimeListItem";
 import { listTags } from "../store/watchlist/watchlist.slice";
 import { store } from "../store/store";
+import { useWatchlistSync } from "../hooks/useWatchlistSync";
 
 export const Watchlist = () => {
     const { watchlist } = useTypedSelection(state => state);
     const [tag, setTag] = useState('ALL');
 
-    useEffect(() => {
-        const unsubscribe = store.subscribe(() => {
-            const state = store.getState();
-            localStorage.setItem('reduxState', JSON.stringify(state.watchlist.items));
-        });
-        return () => unsubscribe();
-    }, []);
+    //useWatchlistSync();
 
     const filteredItems = useMemo(() => {
         if (tag === 'ALL') {

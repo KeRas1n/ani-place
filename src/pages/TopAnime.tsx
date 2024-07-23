@@ -5,6 +5,7 @@ import { AnimeCard } from '../components/AnimeCard'
 import { animeapi, useGetTopAnimeQuery } from '../store/anime/anime.api'
 import { useInView } from 'react-intersection-observer'
 import { useDispatch } from 'react-redux'
+import { useWatchlistSync } from '../hooks/useWatchlistSync'
 
 
 
@@ -36,7 +37,7 @@ function TopAnimePage() {
     
   }, [inView, isLoading]);
 
-  
+  useWatchlistSync();
 
   return (
     <>
