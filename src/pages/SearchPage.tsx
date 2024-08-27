@@ -7,7 +7,6 @@ import { useSearchParams  } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { SearchBarCatalog } from '../components/SearchBarCatalog'
 import { PropertiesSidebar } from '../components/PropertiesSidebar'
-import { useWatchlistSync } from '../hooks/useWatchlistSync'
 
 /*
 interface SearchParamsProp{

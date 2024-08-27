@@ -7,7 +7,6 @@ import { useTypedSelection } from "../hooks/useTypedSelection";
 import { WatchlistTagSelect } from "../components/WatchlistTagSelect";
 import { listTags } from "../store/watchlist/watchlist.slice";
 import { IAnime } from "../store/anime/anime.types";
-import { useWatchlistSync } from "../hooks/useWatchlistSync";
 
 export const SingleAnime = () => {
   const {id} = useParams();

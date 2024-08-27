@@ -1,5 +1,5 @@
 import { Watchlist } from "../components/Watchlist"
-import { useWatchlistSync } from "../hooks/useWatchlistSync";
+
 
 export const Profile = () => {
 

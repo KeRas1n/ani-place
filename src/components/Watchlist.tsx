@@ -1,24 +1,20 @@
-import { useState, useMemo, useCallback, useEffect } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { useTypedSelection } from "../hooks/useTypedSelection";
 import { AnimeListItem } from "./AnimeListItem";
 import { listTags } from "../store/watchlist/watchlist.slice";
-import { store } from "../store/store";
-import { useWatchlistSync } from "../hooks/useWatchlistSync";
 
 export const Watchlist = () => {
     const { watchlist } = useTypedSelection(state => state);
-    const [tag, setTag] = useState('ALL');
-
-    //useWatchlistSync();
+    const [tag, setTag] = useState(' ');
 
     const filteredItems = useMemo(() => {
-        if (tag === 'ALL') {
+        if (!Object.values(listTags).includes(tag)) {
             return watchlist.items;
         }
-        return watchlist.items.filter((p) => p.listTag === tag);
+        return watchlist.items.filter((p:any) => p.listTag === tag);
     }, [watchlist.items, tag]);
 
-    const handleTagChange = useCallback((selectedTag:listTags) => {
+    const handleTagChange = useCallback((selectedTag:any) => {
         setTag(selectedTag);
     }, []);
 
@@ -27,8 +23,8 @@ export const Watchlist = () => {
             <h1 className="text-3xl">My Watchlist</h1>
             <div className="flex mobile:flex-col mt-2">
                 <div className="h-full p-4 rounded-lg flex flex-wrap mobile:flex-row flex-col gap-2 bg-[#0a0a0a]">
-                    <button className={`${tag === 'ALL' ? 'bg-primary' : ''} p-2`} onClick={() => handleTagChange('ALL')}>All</button>
-                    {Object.keys(listTags).map((key) => (
+                    <button className={`${tag === ' ' ? 'bg-primary' : ''} p-2`} onClick={() => handleTagChange(' ')}>All</button>
+                    {Object.keys(listTags).map((key:any) => (
                         <button key={key} className={`${tag === listTags[key] ? 'bg-primary' : ''} p-2`} onClick={() => handleTagChange(listTags[key])}>
                             {listTags[key]}
                         </button>
@@ -36,7 +32,7 @@ export const Watchlist = () => {
                 </div>
                 <div className="watchlist flex flex-wrap mt-3">
                     {filteredItems.length ? (
-                        filteredItems.map((anime) => (
+                        filteredItems.map((anime:any) => (
                             <AnimeListItem key={anime.mal_id + '-watchlist'} id={anime.mal_id + '-watchlist'} anime={anime} />
                         ))
                     ) : (
