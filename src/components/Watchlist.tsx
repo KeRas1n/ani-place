@@ -22,7 +22,7 @@ export const Watchlist = () => {
         <div className="rounded-lg text-lg top-36 bg-[#1c1c1c] wrapper mt-5">
             <h1 className="text-3xl">My Watchlist</h1>
             <div className="flex mobile:flex-col mt-2">
-                <div className="h-full p-4 rounded-lg flex flex-wrap mobile:flex-row flex-col gap-2 bg-[#0a0a0a]">
+                <div className="h-full p-4 rounded-lg flex overflow-scroll mobile:flex-row flex-col gap-2 bg-[#0a0a0a]">
                     <button className={`${tag === ' ' ? 'bg-primary' : ''} p-2`} onClick={() => handleTagChange(' ')}>All</button>
                     {Object.keys(listTags).map((key:any) => (
                         <button key={key} className={`${tag === listTags[key] ? 'bg-primary' : ''} p-2`} onClick={() => handleTagChange(listTags[key])}>
@@ -30,7 +30,7 @@ export const Watchlist = () => {
                         </button>
                     ))}
                 </div>
-                <div className="watchlist flex flex-wrap mt-3">
+                <div className="watchlist w-full flex flex-wrap h-full mt-3">
                     {filteredItems.length ? (
                         filteredItems.map((anime:any) => (
                             <AnimeListItem key={anime.mal_id + '-watchlist'} id={anime.mal_id + '-watchlist'} anime={anime} />

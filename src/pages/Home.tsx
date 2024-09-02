@@ -3,23 +3,31 @@ import '../App.css'
 import { AnimeCard } from '../components/AnimeCard'
 import { animeapi, useGetTopAnimeQuery } from '../store/anime/anime.api'
 import { useInView } from 'react-intersection-observer'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { TypeRootState } from '../store/store';
+import { pageActions } from '../store/page/page.slice'
 
 
 function HomePage() {
   const dispatch = useDispatch()
 
-  const [page, setPage] = useState(1);
+  const {nextPage} = pageActions;
 
-  //reset cache of top anime
-  useEffect(() => {
-    console.log("EFFECT")
-    dispatch(animeapi.util.resetApiState());
-    setPage(1);
-  }, []);
-  
+  //const [page, setPage] = useState(1);
+
+  const page = useSelector((state: TypeRootState) => state.page.pages.context1);
+
+  //const [skipQuery, setSkipQuery] = useState(false);
+
+  // Решение проблемы с повторным вызовом
+ /* useEffect(() => {
+    if (page === 6) {
+      setSkipQuery(true);  // Отключаем skip для следующих вызовов
+    }
+  }, [page]);*/
+
   const {data, isLoading, error} = useGetTopAnimeQuery({query: null, limit: 20, page: page})
-
+  
   const{inView, ref} = useInView()
 
   console.log(data)
@@ -29,7 +37,8 @@ function HomePage() {
 
   useEffect(() => {
     if (inView && !isLoading) {
-      setPage((prevPage) => prevPage + 1);
+      //setPage((prevPage) => prevPage + 1);
+      dispatch(nextPage({ context: 'context1' }));
     }
 
     console.log(page)

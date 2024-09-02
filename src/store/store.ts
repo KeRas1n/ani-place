@@ -4,12 +4,14 @@ import { watchlistReducer } from "./watchlist/watchlist.slice";
 import { animesingleapi } from "./anime/singleanime.api";
 import { animesearchapi } from "./anime/animesearch.api";
 import localStorageSync from "./middleware/localStorageSync";
+import { pageReducer } from "./page/page.slice";
 
 
 
 export const store:Store = configureStore({
     reducer:{[animeapi.reducerPath]: animeapi.reducer, 
-        watchlist:watchlistReducer, 
+        watchlist:watchlistReducer,
+        page: pageReducer,
         [animesingleapi.reducerPath]: animesingleapi.reducer,
         [animesearchapi.reducerPath]: animesearchapi.reducer,
 

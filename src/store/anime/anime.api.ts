@@ -19,7 +19,16 @@ export const animeapi = createApi({
               },
               // Always merge incoming data to the cache entry
               merge: (currentCache, newItems) => {
-                currentCache.data.push(...newItems.data)
+                // Если новых данных нет, просто возвращаем кеш
+                if (!newItems?.data?.length) return;
+              
+                // Объединяем данные с учетом уникальности
+                const mergedData = [...currentCache.data, ...newItems.data.filter(newItem => 
+                  !currentCache.data.some(cachedItem => cachedItem.mal_id === newItem.mal_id)
+                )];
+              
+                // Обновляем кеш
+                currentCache.data = mergedData;
               },
               // Refetch when the page arg changes
               forceRefetch({ currentArg, previousArg }) {

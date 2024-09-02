@@ -4,9 +4,11 @@ import { AnimeCard } from '../components/AnimeCard'
 import { useInView } from 'react-intersection-observer'
 import { animesearchapi, useGetAnimeSearchQuery } from '../store/anime/animesearch.api'
 import { useSearchParams  } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { SearchBarCatalog } from '../components/SearchBarCatalog'
 import { PropertiesSidebar } from '../components/PropertiesSidebar'
+import { TypeRootState } from '../store/store'
+import { pageActions } from '../store/page/page.slice'
 
 /*
 interface SearchParamsProp{
@@ -20,18 +22,19 @@ function SearchPage() {
   const dispatch = useDispatch()
     
   let [searchParams, setSearchParams] = useSearchParams();
-  
-  const [page, setPage] = useState(1);
 
+  const {nextPage, setPage} = pageActions;
+  //const [page, setPage] = useState(1);
+  const page = useSelector((state: TypeRootState) => state.page.pages.context2);
 
-
+/*
   //reset cache of top anime
   useEffect(() => {
     console.log("EFFECT")
     dispatch(animesearchapi.util.resetApiState());
     setPage(1);
   }, [searchParams]);
-
+*/
 
   
   const {data, isLoading, error} = useGetAnimeSearchQuery({query:searchParams, limit:50, page:page});
@@ -48,7 +51,8 @@ function SearchPage() {
 
   useEffect(() => {
     if (inView && !isLoading) {
-      setPage((prevPage) => prevPage + 1);
+      //setPage((prevPage) => prevPage + 1);
+      dispatch(nextPage({ context: 'context2' }));
     }
 
     console.log(page)
@@ -57,13 +61,14 @@ function SearchPage() {
 
   const Search = (value:string) => {
     dispatch(animesearchapi.util.resetApiState());
-    setPage(1);
+    //setPage(1);
+    dispatch(setPage({ context: 'context2', page:1}));
     setSearchParams({q:value})
   }
 
   const Order = (value:string) => {
     dispatch(animesearchapi.util.resetApiState());
-    setPage(1);
+    dispatch(setPage({ context: 'context2', page:1}));
 
     //setSearchParams(createSearchParams({q:searchParams.get('q')?.toString(), order_by:value}))
     setSearchParams(new URLSearchParams([['q', `${searchParams.get('q')? searchParams.get('q') : ''}` ],
