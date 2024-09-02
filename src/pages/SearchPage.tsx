@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import '../App.css'
 import { AnimeCard } from '../components/AnimeCard'
 import { useInView } from 'react-intersection-observer'

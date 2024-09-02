@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import '../App.css'
 import { AnimeCard } from '../components/AnimeCard'
-import { animeapi, useGetTopAnimeQuery } from '../store/anime/anime.api'
+import {  useGetTopAnimeQuery } from '../store/anime/anime.api'
 import { useInView } from 'react-intersection-observer'
 import { useDispatch, useSelector } from 'react-redux'
 import { TypeRootState } from '../store/store';
