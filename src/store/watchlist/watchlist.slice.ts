@@ -7,7 +7,7 @@ const items:any = []
 //const initialState = {items:items}
 
 const initialState = localStorage.getItem('reduxState') 
-    ? {items:JSON.parse(localStorage.getItem('reduxState') || '{}')} //NO PROBLEM
+    ? {items:JSON.parse(localStorage.getItem('reduxState') || '{}')}
     : {items:items}
 
 
@@ -24,6 +24,9 @@ export const watchlistSlice = createSlice({
     name:'watchlist',
     initialState,
     reducers: {
+        setWatchlist:(state, action:PayloadAction<IAnime>) => {
+            state.items = action.payload
+        },
         addItem:(state, action:PayloadAction<IAnime>) => {
             state.items.push({...action.payload, listTag:listTags.PLAN_TO_WATCH})
         },
