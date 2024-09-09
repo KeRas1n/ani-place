@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Logout } from "../components/Logout";
 import { SignInGoogle } from "../components/SignInGoogle"
 import { Watchlist } from "../components/Watchlist"

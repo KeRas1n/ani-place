@@ -1,4 +1,4 @@
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import {removeUser} from '../store/user/userSlice'
 
