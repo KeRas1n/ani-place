@@ -3,8 +3,8 @@ import react from '@vitejs/plugin-react'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  envDir: './buildConfig/environments',
   plugins: [react()],
-  define: {
-    __APP_ENV__: process.env.VITE_VERCEL_ENV,
-  },
+  base: process.env.PUBLIC_URL,
+  build: { outDir: process.env.BUILD_PATH },
 })
